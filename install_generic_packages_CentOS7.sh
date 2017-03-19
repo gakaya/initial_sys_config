@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 echo 
-echo "#####################################"
+echo "######################################"
 echo "SCRIPT: $0"
-echo "Installing GENERIC Packages..."
-echo "#####################################"
+echo "Installing CentOS7 GENERIC Packages..."
+echo "######################################"
 echo
 
 echo "Installing EPEL..."
@@ -28,18 +28,16 @@ yum install bind-utils -y > /dev/null
 echo "Installing misc utilities..."
 yum install vim-enhanced mlocate tcpdump nc strace screen vim mailx traceroute tree telnet nmap libxml2 pciutils git -y > /dev/null
 
-echo "Installing RUBY..."
-#yum --disablerepo=epel --disablerepo=rpmforge install ruby ruby-devel ruby-irb ruby-libs ruby-ri rubygems rubygems-devel rubygem-rake  -y > /dev/null
-yum install ruby ruby-devel ruby-irb ruby-libs ruby-ri rubygems rubygems-devel rubygem-rake  -y > /dev/null
+echo "Installing expect... for the mkpasswd command."
+yum install expect -y > /dev/null
 
-echo "Installing Python..."
-yum install python python-tools python-devel -y > /dev/null 
+echo "Installing PROGRAMMING LANGUAGE packages..."
+/bin/bash ./install_python.sh
+/bin/bash ./install_perl.sh
+/bin/bash ./install_ruby.sh
 
-echo "Installing Perl CPAN packages..."
-yum install perl-CPAN perl-CPANPLUS -y > /dev/null
-
-echo "Installing Perl MySQL packages..."
-yum install perl-DBI perl-DBD-MySQL perl-DBD-Pg -y > /dev/null
+echo "Doing a full system update... wait a few mins..."
+yum update -y > /dev/null
 
 echo "Updating the local file database... will taka a couple of mins."
 updatedb
