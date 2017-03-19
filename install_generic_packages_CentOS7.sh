@@ -31,11 +31,6 @@ yum install vim-enhanced mlocate tcpdump nc strace screen vim mailx traceroute t
 echo "Installing expect... for the mkpasswd command."
 yum install expect -y > /dev/null
 
-echo "Installing PROGRAMMING LANGUAGE packages..."
-/bin/bash ./install_python.sh
-/bin/bash ./install_perl.sh
-/bin/bash ./install_ruby.sh
-
 echo "Doing a full system update... wait a few mins..."
 yum update -y > /dev/null
 
