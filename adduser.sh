@@ -29,7 +29,7 @@ function add_user() {
   echo
   echo "$USER:x:$uid:$gid::/home/$USER:/bin/bash" >> /etc/passwd
   echo "$USER:x:$gid:" >> /etc/group
-  echo "$USER:$6$siYPS/XT$Y8oPgkOi4gLLnlsb5L6ikyRfNLJGB4ymrO0SqhtyeE9RFBZV.OQCqVVl0cqoQddgDHnNdzFBNz0H7neGJ9RPH1:17246:0:99999:7:::" >> /etc/shadow
+  echo "$USER:"'$6$Ozq/xNc8$LADRiie3bHjAp8gkxWvOZlccGthFvmujkbpEoc4jTnf2rgAMFN5ojd2s.ZOikGJQvvF8YEnQzKXVGb2tEVOLZ0:17246:0:99999:7:::' >> /etc/shadow
 
   # add the user to the wheel sudo group
   usermod -a -G wheel $USER
