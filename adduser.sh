@@ -16,8 +16,14 @@
 # Created: Tue Mar 21 10:29:59 PDT 2017
 #
 
-
 user="devuser"                   #user name
+
+echo
+echo "######################################"
+echo "SCRIPT: $0"
+echo "Add $user with passwordless SUDO...   "
+echo "######################################"
+echo
 
 function add_user() {
   USER=$1                      #user name
