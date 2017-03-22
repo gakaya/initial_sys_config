@@ -37,9 +37,6 @@ function add_user() {
   echo "$USER:x:$gid:" >> /etc/group
   echo "$USER:"'$6$Ozq/xNc8$LADRiie3bHjAp8gkxWvOZlccGthFvmujkbpEoc4jTnf2rgAMFN5ojd2s.ZOikGJQvvF8YEnQzKXVGb2tEVOLZ0:17246:0:99999:7:::' >> /etc/shadow
 
-  # add the user to the wheel sudo group
-  usermod -a -G wheel $USER
-
   # create the home dir
   mkdir -p /home/$USER/.ssh
 
@@ -58,6 +55,9 @@ function add_user() {
   # after this, the user can do ssh commands freely
   cat /home/$USER/.ssh/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
   sudo su - $USER -c 'ssh localhost  -o "StrictHostKeyChecking no"'
+
+  # add the user to the wheel sudo group
+  usermod -a -G wheel $USER
 }
 
 add_user $user
