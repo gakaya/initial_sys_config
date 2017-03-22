@@ -7,13 +7,19 @@ echo "Installing PYTHON Packages..."
 echo "#####################################"
 echo
 
-echo "Installing Python..."
-yum install python python-pip python-tools python-devel -y > /dev/null 
+_YUM="yum install --nogpgcheck"
 
-echo "Upgrading PIP..."
-/bin/pip install --upgrade pip > /dev/null
+function install_python() {
+  echo "Installing Python..."
+  $_YUM python python-pip python-tools python-devel -y > /dev/null 
 
-echo "Installing python modules..."
-/bin/pip install passlib > /dev/null #to generate encrypted password
+  echo "Upgrading PIP..."
+  /bin/pip install --upgrade pip > /dev/null
 
-echo; echo "DONE Installing PYTHON Packages..."; echo
+  echo "Installing python modules..."
+  /bin/pip install passlib > /dev/null #to generate encrypted password
+
+  echo; echo "DONE Installing PYTHON Packages..."; echo
+}
+
+install_python
