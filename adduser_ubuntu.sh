@@ -25,6 +25,14 @@ echo "Add $user with passwordless SUDO...   "
 echo "######################################"
 echo
 
+# enable sudo for the user
+function add_to_sudoers(){
+  USER=$1                      #user name
+  cp /etc/sudoers /etc/sudoers.$$
+  echo "$USER    "'ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+  usermod -a -G sudo $USER
+}
+
 function add_user() {
   USER=$1                      #user name
   uid=$((2000 + RANDOM % 100)) #user numeric id
@@ -55,6 +63,9 @@ function add_user() {
   # after this, the user can do ssh commands freely
   cat /home/$USER/.ssh/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
   sudo su - $USER -c 'ssh localhost  -o "StrictHostKeyChecking no"'
+
+  # enable sudo for the user
+  add_to_sudoers $USER
 }
 
 add_user $user
