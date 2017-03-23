@@ -3,7 +3,7 @@
 echo 
 echo "######################################"
 echo "SCRIPT: $0"
-echo "Installing Ubuntu 14.04 GENERIC Packages..."
+echo "Installing U14.04 GENERIC Packages... "
 echo "######################################"
 echo
 
@@ -13,8 +13,8 @@ function install_packages(){
   echo "Updating the database..."
   apt-get update > /dev/null
 
-  echo "Installing git..."
-  $_APT_GET git > /dev/null
+  echo "Installing packages..."
+  $_APT_GET git nmap inetutils-traceroute > /dev/null
 }
 
 function install_gcc() {
