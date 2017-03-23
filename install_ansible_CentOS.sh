@@ -11,7 +11,7 @@ _YUM="yum install --nogpgcheck"
 
 function ansible_install(){
   echo "Cleaning up yum cache..."
-  $_YUM clean all
+  yum clean all
   $_YUM ansible 
 }
 
