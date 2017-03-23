@@ -11,7 +11,7 @@ _YUM="yum install --nogpgcheck"
 
 function install_packages(){
   echo "Cleaning up yum cache..."
-  $_YUM clean all
+  yum clean all
 
   echo "Installing EPEL..."
   $_YUM epel-release -y > /dev/null
