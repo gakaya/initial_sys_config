@@ -47,7 +47,7 @@ function add_user() {
   chmod 600 /home/$USER/.ssh/authorized_keys
 
   # create the ssh key with empty passphrase
-  ssh-keygen -t rsa -N "" -f /home/$USER/.ssh/id_rsa
+  ssh-keygen -t rsa -N "" -f /home/$USER/.ssh/id_rsa -C "$USER@`uname -n`"
   chown -R $USER:$USER /home/$USER
 
   # add the user key to the authorized_keys
