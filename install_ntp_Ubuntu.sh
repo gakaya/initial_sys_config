@@ -15,9 +15,6 @@ function ntp_install() {
   # Set to PST
   timedatectl set-timezone America/Tijuana
   
-  # check
-  ntpq -p 
-  
   echo "DONE Installing NTP"; echo 
 }
 

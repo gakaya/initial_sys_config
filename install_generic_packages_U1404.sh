@@ -10,8 +10,8 @@ echo
 _APT_GET=" apt-get install -y"
 
 function install_packages(){
-  echo "Updating the datbase..."
-  $_APT_GET update > /dev/null
+  echo "Updating the database..."
+  apt-get update > /dev/null
 
   echo "Installing git..."
   $_APT_GET git > /dev/null
@@ -23,7 +23,7 @@ function install_gcc() {
 
   echo "Installing g++..."
   yes '' | add-apt-repository ppa:ubuntu-toolchain-r/test
-  $_APT_GET g++-5 > /dev/null
+  $_APT_GET g++ > /dev/null
 }  
 
 function update_system(){
