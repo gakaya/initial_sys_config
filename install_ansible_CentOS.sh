@@ -7,7 +7,7 @@ echo "Installing ANSIBLE..."
 echo "######################################"
 echo
 
-_YUM="yum install --nogpgcheck"
+_YUM="yum install -y --nogpgcheck"
 
 function ansible_install(){
   echo "Cleaning up yum cache..."
