@@ -6,7 +6,7 @@
 # http://unix.stackexchange.com/questions/69314/automated-ssh-keygen-without-passphrase-how
 #
 
-user=devuser
+user=`echo $USER`
 home=/home/$user
 
 function create_ssh(){
@@ -25,6 +25,7 @@ function create_ssh(){
   chmod 600 authorized_keys
 
   cat /dev/zero | ssh-keygen -q -N "" #creates rsa key, no passphrase
+  cat id_rsa.pub > authorized_keys    #add the new key to auth
 
 
   echo -e "\nEnd: create ssh rsa key...\n"
@@ -32,5 +33,5 @@ function create_ssh(){
 
 #####################
 # MAIN PROGRAM
-# 
+#
 create_ssh $home
