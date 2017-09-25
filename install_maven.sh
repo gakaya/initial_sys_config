@@ -36,8 +36,8 @@ function verify_installation(){
 function setup_env_vars(){
   PROFILE=/etc/profile.d/maven.sh
   cp /dev/null $PROFILE
-  echo 'export M2_HOME=/usr/local/apache-maven-$VERSION' >> $PROFILE
-  echo 'export PATH=${M2_HOME}/bin:${PATH}' >> $PROFILE
+  echo "export M2_HOME=/usr/local/apache-maven-$VERSION" >> $PROFILE
+  echo "export PATH=${M2_HOME}/bin:${PATH}" >> $PROFILE
 }
 
 #check whether JDK is installed. Install it if not already there.
