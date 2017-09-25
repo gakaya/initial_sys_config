@@ -58,6 +58,9 @@ function add_user() {
 
   # add the user to the wheel sudo group
   usermod -a -G wheel $USER
+  
+  # set the proper SELinux context ssh_home_t for the .ssh dir
+  restorecon -r /home/$USER/.ssh
 }
 
 add_user $user
