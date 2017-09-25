@@ -11,16 +11,19 @@ echo "Installing CentOS7 Apache MAVEN...     "
 echo "#######################################"
 echo
 
-VERSION=3.3.9
+VERSION='3.3.9'
 
 # install the package
 function install_packages(){
-    echo
-    echo "INFO: Installing Apache MAVEN $VERSION..."
-    wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
-    tar xzf apache-maven-$VERSION-bin.tar.gz -C /usr/local
-    cd /usr/local
-    ln -s apache-maven-$VERSION maven
+   echo
+   echo "INFO: Installing Apache MAVEN ${VERSION}..."
+   wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
+   tar xzf apache-maven-$VERSION-bin.tar.gz -C /usr/local
+   cd /usr/local
+   ln -s apache-maven-$VERSION maven
+   echo "Updating the local file database... will taka a couple of mins."
+   updatedb
+   echo; echo "DONE Installing Apache MAVEN ${VERSION}..."
 }
 
 function verify_installation(){
@@ -35,9 +38,9 @@ function verify_installation(){
 # create a profile file to setup the env vars
 function setup_env_vars(){
   PROFILE=/etc/profile.d/maven.sh
-  cp /dev/null $PROFILE
-  echo "export M2_HOME=/usr/local/apache-maven-$VERSION" >> $PROFILE
-  echo "export PATH=${M2_HOME}/bin:${PATH}" >> $PROFILE
+  cp /dev/null ${PROFILE}
+  echo "export M2_HOME=/usr/local/apache-maven-${VERSION}" >> ${PROFILE}
+  echo "export PATH=${M2_HOME}/bin:${PATH}" >> ${PROFILE}
 }
 
 #check whether JDK is installed. Install it if not already there.
@@ -46,24 +49,18 @@ java -version 2> /dev/null
 if [ $? != 0 ]; then
    echo; echo "Java is is not installed. Install the JDK first, then rerun this script."
    exit 0
-else
-   install_packages
-   echo "Updating the local file database... will taka a couple of mins."
-   updatedb
-   echo; echo "DONE Installing Apache MAVEN $VERSION..."
 fi
 }
 
-# Remove the installation
-function uninstall_maven(){
-  rm -rf /usr/local/maven
-  rm -rf /usr/local/apache-maven-$VERSION
-}
+## Remove the installation
+#function uninstall_maven(){
+#  rm -rf /usr/local/maven
+#  rm -rf /usr/local/apache-maven-${VERSION}
+#}
 
 echo
 java_check
 install_packages
 setup_env_vars
 verify_installation
-#uninstall_maven
 echo
