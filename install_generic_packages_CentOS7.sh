@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo 
+echo
 echo "######################################"
 echo "SCRIPT: $0"
 echo "Installing CentOS7 GENERIC Packages..."
@@ -8,6 +8,9 @@ echo "######################################"
 echo
 
 _YUM="yum install --nogpgcheck"
+GCC='gcc gcc glibc glibc-common glibc-devel glibc-headers'
+ZLIB='zlib-devel'
+MISC_UTILS='bind-utils vim-enhanced mlocate tcpdump nc strace screen tmux mailx traceroute tree telnet nmap libxml2 pciutils git expect'
 
 function install_packages(){
   echo "Cleaning up yum cache..."
@@ -15,27 +18,18 @@ function install_packages(){
 
   echo "Installing EPEL..."
   $_YUM epel-release -y > /dev/null
-  
+
   echo "Installing Kernel Headers and Devel..."
   $_YUM kernel-headers kernel-devel  -y > /dev/null
-  
-  echo "Installing Java JDK"
-  $_YUM java-1.8.0-openjdk-devel -y > /dev/null
-  
+
   echo "Installing gcc..."
-  $_YUM gcc gcc glibc glibc-common glibc-devel glibc-headers -y > /dev/null
-  
+  $_YUM $GCC -y > /dev/null
+
   echo "Installing zlib..."
-  $_YUM zlib-devel -y > /dev/null
-  
-  echo "Installing nfs utilities..."
-  $_YUM bind-utils -y > /dev/null
-  
+  $_YUM $ZLIB -y > /dev/null
+
   echo "Installing misc utilities..."
-  $_YUM vim-enhanced mlocate tcpdump nc strace screen vim mailx traceroute tree telnet nmap libxml2 pciutils git -y > /dev/null
-  
-  echo "Installing expect... for the mkpasswd command."
-  $_YUM expect -y > /dev/null
+  $_YUM  $MISC_UTILS -y > /dev/null
 }
 
 function update_system(){
@@ -55,7 +49,7 @@ function sudo_config(){
   /bin/cp $FILE $FILE.ORIG
   /bin/perl -pi -e 's/^%wheel/#wheel/' $FILE
   /bin/perl -pi -e 's/^#\s%wheel(.*)/%wheel$1/' $FILE
-}  
+}
 
 ########################################
 # MAIN PROGRAM
@@ -63,7 +57,7 @@ function sudo_config(){
 install_packages
 disable_selinux
 sudo_config
-#update_system
+update_system
 
 echo "Updating the local file database... will taka a couple of mins."
 updatedb

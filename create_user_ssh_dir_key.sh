@@ -11,7 +11,6 @@ home=/home/$user
 
 function create_ssh(){
   home=$1
-
   echo -e "\nStart: create ssh rsa key..."
 
   if [ ! -f $home/.ssh ];then
@@ -19,15 +18,12 @@ function create_ssh(){
   fi
 
   chmod 700 $home/.ssh
-
   cd $home/.ssh
   touch authorized_keys
   chmod 600 authorized_keys
 
   cat /dev/zero | ssh-keygen -q -N "" #creates rsa key, no passphrase
   cat id_rsa.pub > authorized_keys    #add the new key to auth
-
-
   echo -e "\nEnd: create ssh rsa key...\n"
 }
 
