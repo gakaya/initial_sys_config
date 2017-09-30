@@ -13,10 +13,17 @@
 # Another way to generate a random number:
 #   uid=shuf -i 2000-2100 -n 1
 #
+# REFERENCES:
+# https://stackoverflow.com/questions/4437573/bash-assign-default-value
+#
+#
 # Created: Tue Mar 21 10:29:59 PDT 2017
+# Last Updated: Sat Sep 30 15:29:51 PDT 2017
+#
 #
 
-user="devuser"                   #user name
+user=${1:-devuser}              #user name, default is 'devuser'
+echo "Adding user: $user"
 
 echo
 echo "######################################"
@@ -61,6 +68,10 @@ function add_user() {
   
   # set the proper SELinux context ssh_home_t for the .ssh dir
   restorecon -r /home/$USER/.ssh
+
+  echo
+  echo "Remember to change the default password."
+  echo
 }
 
 add_user $user
