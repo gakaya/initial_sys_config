@@ -38,7 +38,7 @@ function add_user() {
   gid=$((uid + 1))             #user group id
 
   echo
-  echo "Adding $USER... the password is \"password\""
+  echo "Adding user \"$USER\"... the password is \"password\""
   echo
   echo "$USER:x:$uid:$gid::/home/$USER:/bin/bash" >> /etc/passwd
   echo "$USER:x:$gid:" >> /etc/group
@@ -57,12 +57,6 @@ function add_user() {
   ssh-keygen -t rsa -N "" -f /home/$USER/.ssh/id_rsa -C "$USER@`uname -n`"
   chown -R $USER:$USER /home/$USER
 
-  # add the user key to the authorized_keys
-  # the ssh test to localhost adds the key to the known_hosts file
-  # after this, the user can do ssh commands freely
-  cat /home/$USER/.ssh/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
-  sudo su - $USER -c 'ssh localhost  -o "StrictHostKeyChecking no"'
-
   # add the user to the wheel sudo group
   usermod -a -G wheel $USER
   
@@ -72,6 +66,13 @@ function add_user() {
   echo
   echo "Remember to change the default password."
   echo
+
+  # add the user key to the authorized_keys
+  cat /home/$USER/.ssh/id_rsa.pub >> /home/$USER/.ssh/authorized_keys
+
+  # this  adds localhost the key to the known_hosts file
+  # after this, the user can do ssh commands freely
+  sudo su - $USER -c 'ssh localhost  -o "StrictHostKeyChecking no"'
 }
 
 add_user $user
