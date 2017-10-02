@@ -1,0 +1,9 @@
+[user]
+	email = user@localhost
+	name = User DevOps
+[core]
+  editor = vim
+  autocrlf = input
+  safecrlf = true
+[merge]
+  tool = vimdiff
