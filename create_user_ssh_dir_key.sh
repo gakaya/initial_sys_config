@@ -7,10 +7,11 @@
 #
 
 user=`echo $USER`
-home=/home/$user
+home=`echo $HOME`
 
 function create_ssh(){
   home=$1
+  echo "Creating SSH Key for $user in $home"
   echo -e "\nStart: create ssh rsa key..."
 
   if [ ! -f $home/.ssh ];then
