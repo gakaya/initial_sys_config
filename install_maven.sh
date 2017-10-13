@@ -21,6 +21,7 @@ function install_packages(){
    tar xzf apache-maven-$VERSION-bin.tar.gz -C /usr/local
    cd /usr/local
    ln -s apache-maven-$VERSION maven
+   ln -s /usr/local/maven/bin/mvn /usr/local/bin/mvn
    echo "Updating the local file database... will taka a couple of mins."
    updatedb
    echo; echo "DONE Installing Apache MAVEN ${VERSION}..."
