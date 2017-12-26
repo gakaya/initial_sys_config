@@ -10,7 +10,7 @@ echo
 _YUM="yum install --nogpgcheck"
 GCC='gcc gcc glibc glibc-common glibc-devel glibc-headers'
 ZLIB='zlib-devel'
-MISC_UTILS='bind-utils vim-enhanced mlocate tcpdump nc strace screen tmux mailx traceroute tree telnet nmap libxml2 pciutils git expect'
+MISC_UTILS='bridge-utils bind-utils vim-enhanced mlocate tcpdump nc strace screen tmux mailx traceroute tree telnet nmap libxml2 pciutils git expect'
 
 function install_packages(){
   echo "Cleaning up yum cache..."
@@ -20,7 +20,7 @@ function install_packages(){
   $_YUM epel-release -y > /dev/null
 
   echo "Installing Kernel Headers and Devel..."
-  $_YUM kernel-headers kernel-devel  -y > /dev/null
+  $_YUM kernel-headers kernel-devel --disableexcludes=all  -y > /dev/null
 
   echo "Installing gcc..."
   $_YUM $GCC -y > /dev/null
