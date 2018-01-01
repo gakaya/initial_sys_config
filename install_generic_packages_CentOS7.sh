@@ -15,6 +15,7 @@ MISC_UTILS='net-utils elinks bridge-utils bind-utils vim-enhanced mlocate tcpdum
 function install_packages(){
   echo "Cleaning up yum cache..."
   yum clean all
+  rm -rf /var/cache/yum
 
   echo "Installing EPEL..."
   $_YUM epel-release -y > /dev/null
