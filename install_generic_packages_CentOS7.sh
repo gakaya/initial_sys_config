@@ -10,7 +10,7 @@ echo
 _YUM="yum install --nogpgcheck"
 GCC='gcc gcc glibc glibc-common glibc-devel glibc-headers'
 ZLIB='zlib-devel'
-MISC_UTILS='net-utils elinks bridge-utils bind-utils vim-enhanced mlocate tcpdump nc strace screen tmux mailx traceroute tree telnet nmap libxml2 pciutils git expect'
+MISC_UTILS='wget elinks net-tools net-utils bridge-utils bind-utils vim-enhanced mlocate tcpdump nc strace screen tmux mailx traceroute tree telnet nmap libxml2 pciutils git expect'
 
 function install_packages(){
   echo "Cleaning up yum cache..."
