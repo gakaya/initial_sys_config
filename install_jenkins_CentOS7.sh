@@ -4,6 +4,9 @@
 # http://www.unix.com/shell-programming-and-scripting/249212-sed-command-replace-line-file-using-line-number-output-pipe.html
 # https://unix.stackexchange.com/questions/69112/how-can-i-use-variables-when-doing-a-sed
 #
+# Available yum versions:
+# JENKINS_VERSION='jenkins-2.19.4-1.1'
+#
 
 echo
 echo "#######################################"
@@ -14,7 +17,7 @@ echo
 
 _YUM="yum install --nogpgcheck -y"
 OS_VERSION=`cat /etc/redhat-release | awk '{print $4}'`
-JENKINS_VERSION='jenkins-2.19.4-1.1'
+JENKINS_VERSION='jenkins-2.89.2-1.1'
 OS=7
 
 # Get the jenkins repo
@@ -24,7 +27,7 @@ function jenkins_repo() {
 }
 
 function install_jenkins(){
-  echo "INFO: Installing Jenkins"
+  echo "INFO: Installing $JENKINS_VERSION"
   $_YUM $JENKINS_VERSION
 }
 
