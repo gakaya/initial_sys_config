@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #
 # Install the JAVA JDK in a CentOS System.
-# Sun Sep 24 13:25:42 PDT 2017
+# must include both java packages:
+# - java-1.8.0-openjdk 
+# - java-1.8.0-openjdk-devel
+#
+# Last updated: Sun Sep 24 13:25:42 PDT 2017
+# Last updated: Sat Mar  3 20:21:23 PST 2018
 #
 
 echo
@@ -12,7 +17,7 @@ echo "#######################################"
 echo
 
 _YUM="yum install --nogpgcheck"
-JAVA_VERSION='java-1.8.0-openjdk-devel'
+JAVA_VERSION='java-1.8.0-openjdk java-1.8.0-openjdk-devel'
 
 function install_packages(){
   echo "INFO: Installing Java JDK"
