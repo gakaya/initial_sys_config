@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 #
-# Install the JAVA JDK in a CentOS System.
-# must include both java packages:
-# - java-1.8.0-openjdk 
-# - java-1.8.0-openjdk-devel
+# Install ANT in a CentOS System.
 #
-# Last updated: Sun 2018Mar11 12:41:16 PDT 
+# Last updated: Sun 2018Mar11 13:22:08 PDT 
 #
 
 echo
