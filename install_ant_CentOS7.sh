@@ -22,6 +22,7 @@ function cleanUpPrevious(){
   rm -rf /usr/local/ant
   rm -rf /usr/local/bin/ant 
   rm -rf /usr/local/ant/bin/ant 
+  rm -rf /etc/profile.d/ant.sh
 }
 
 function install_packages(){
@@ -37,6 +38,14 @@ function install_packages(){
 
 }
 
+function antEnvSetup(){
+cat << EOF > /etc/profile.d/ant.sh
+export ANT_HOME=/usr/local/apache-ant-${ANT_VERSION}
+export PATH=${ANT_HOME}/bin:$PATH
+export CLASSPATH=.
+EOF
+}
+
 ########################################
 # MAIN PROGRAM
 #
@@ -48,5 +57,6 @@ if [ $? == 0 ]; then
 else
   cleanUpPrevious
   install_packages
+  antEnvSetup
   echo; echo "DONE Installing $ANT_VERSION..."; echo
 fi
