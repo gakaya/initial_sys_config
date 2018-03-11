@@ -23,11 +23,11 @@ function install_packages(){
   echo "INFO: Installing Java JDK"
   $_YUM $JAVA_VERSION -y > /dev/null
 
-  echo "INFO: Configure java alternatives"
-  alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
-  alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-  alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
-  echo "export JAVA_HOME=/usr/java/latest" >> /etc/rc.d/rc.local
+  #echo "INFO: Configure java alternatives"
+  #alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
+  #alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+  #alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+  #echo "export JAVA_HOME=/usr/java/latest" >> /etc/rc.d/rc.local
 }
 
 ########################################
